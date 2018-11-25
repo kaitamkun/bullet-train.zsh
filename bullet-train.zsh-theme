@@ -39,6 +39,12 @@ if [ ! -n "${BULLETTRAIN_PROMPT_ORDER+1}" ]; then
 fi
 
 # PROMPT
+if [ ! -n "${BULLETTRAIN_PROMPT_FG+1}" ]; then
+  BULLETTRAIN_PROMPT_FG="green"
+fi
+if [ ! -n "${BULLETTRAIN_ROOT_PROMPT_FG+1}" ]; then
+  BULLETTRAIN_ROOT_PROMPT_FG="red"
+fi
 if [ ! -n "${BULLETTRAIN_PROMPT_CHAR+1}" ]; then
   BULLETTRAIN_PROMPT_CHAR="\$"
 fi
@@ -637,7 +643,7 @@ prompt_chars() {
   local bt_prompt_chars="${BULLETTRAIN_PROMPT_CHAR}"
 
   if [[ $BULLETTRAIN_PROMPT_ROOT == true ]]; then
-    bt_prompt_chars="%(!.%F{red}# .%F{green}${bt_prompt_chars}%f)"
+    bt_prompt_chars="%(!.%F{$BULLETTRAIN_ROOT_PROMPT_FG}# .%F{$BULLETTRAIN_PROMPT_FG}${bt_prompt_chars}%f)"
   fi
 
   if [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]]; then
